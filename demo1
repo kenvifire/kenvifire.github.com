@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WebGL demo01</title>
+
+	<script src="javascripts/three.js"></script>
+	<script src="javascripts/RequestAnimationFrame.js"></script>
+	<script>
+		var renderer = null,
+			scene = null,
+			camera = null;
+
+
+		function onLoad(){
+			//canvas
+			var container = document.getElementById("container");
+			//renderer
+			renderer = new THREE.WebGLRenderer({antialias:true});
+			renderre.setSize(container.offsetWidth,container.offsetHeight);
+			container.appendChild(renderer.domElement);
+			//scene
+			scene = new THREE.Scene();
+
+			camera = new THREE.PerspectiveCamera(45,container.offsetWidth/container.offsetHeight,)
+			camera.position.set(0,0,3);
+			scane.add(camera);
+
+			var geometry = new THREE.PlaneGeometry(1,1);
+			var mesh = new THREE.Mesh(geometry,new THREE.MeshBasicMaterial());
+			scane.add(mesh);
+
+			renderer.render(scene,camera);
+
+
+
+
+
+		}
+	</script>
+
+</head>
+<body onLoad="onLoad();" style="">
+	<center><h1>Welcome to My Blog!</h1></center>
+    <div id="container" style="width:95%; height:80%; position:absolute;"></div>
+	
+
+</body>
+</html>
