@@ -1,3 +1,9 @@
+---
+layout: page
+title: "前导字符"
+description: ""
+---
+{% include JB/setup %}
 ###前导字符
 我们已经学会了如何建立按键映射来让我们用起来比较爽，但是你也许会发现另外的一个问题。
 
