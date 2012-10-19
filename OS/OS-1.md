@@ -46,7 +46,7 @@ msg:
 
 `entry`部分的代码是对寄存器进行初始化
 
-`putloop`部分的代码是用来输出`SI`寄存器所指向的字符串，以'\0`结尾。
+`putloop`部分的代码是用来输出`SI`寄存器所指向的字符串，以`\0`结尾。
 
 `fin`部分是个死循环
 
@@ -66,13 +66,17 @@ msg:
 
 ###编译和运行
 ####编译
-<pre><code>nasm myOS.nas -o myOS.bin
+<pre><code>nasm myOS.nas -o myOS.bin</code></pre>
 
 ####转换成img文件
 <pre><code>dd if=myOS.bin of=myOS.img bs=512 count=1 conv=notrunc</code></pre>
 
 ####执行
 用VirtualBox或者Qume模拟器来加载myOS.img（推荐用Qume)
+
+###Makefile
+可以使用Makefile文件来一次性完成上面的动作
+<pre><code></code></pre>
 
 ###效果图
 ![](images/OS-1.jpg)
