@@ -84,7 +84,8 @@ myOS.img : myOS.bin Makefile
 	dd if=myOS.bin of=myOS.img bs=512 count=1 conv=notrunc
 
 img:
-	make -r myOS.img</code></pre>
+	make -r myOS.img
+</code></pre>
 
 ###效果图
 ![](images/OS-1.jpg)
