@@ -84,7 +84,7 @@ img:
 	make -r myOS.img</code></pre>
 
 ###效果图
-![](images/OS-1.jpg)
+![](http://kenvifire.github.com/images/OS-1.jpg)
 
 
 
