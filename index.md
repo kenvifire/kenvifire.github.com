@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Welcomte to my blog
-tagline: index
+title: Kenvi's personal blog
+tagline: 
 ---
 {% include JB/setup %}
 
