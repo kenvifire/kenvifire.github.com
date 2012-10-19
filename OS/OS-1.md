@@ -77,11 +77,9 @@ msg:
 ###Makefile
 可以使用Makefile文件来一次性完成上面的动作
 <pre><code>myOS.bin : myOS.nas Makefile
-	nasm myOS.nas -o myOS.bin
-
-myOS.img : myOS.bin Makefile
+	nasm myOS.nas -o myOS.bin<br/>
+myOS.img : myOS.bin Makefile<br/>
 	dd if=myOS.bin of=myOS.img bs=512 count=1 conv=notrunc
-
 img:
 	make -r myOS.img</code></pre>
 
