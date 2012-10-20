@@ -35,7 +35,7 @@ CYLS	EQU	2
 	ORG	0x7c00
 	JMP	entry
 	DB		0x90
-	DB		"HARIBOTE"	
+	DB		&quot;HARIBOTE&quot;
 	DW		512				
 	DB		1			
 	DW		1				
@@ -50,8 +50,8 @@ CYLS	EQU	2
 	DD		2880			
 	DB		0,0,0x29		
 	DD		0xffffffff	
-	DB		"HARIBOTEOS "
-	DB		"FAT12   "
+	DB		&quot;HARIBOTEOS &quot;
+	DB		&quot;FAT12   &quot;
 	times	18	DB 0
 
 entry:
@@ -127,7 +127,7 @@ fin:
 
 msg:
 	DB	0x0a,0x0a
-	DB	"hello,error"
+	DB	&quot;hello,error&quot;
 	DB	0x0a
 	DB	0
 
@@ -172,6 +172,9 @@ fin:
 
 ###替换内核
 有了Boot Loader 那么我们就可以随时替换我们的内核了，只需要修改kernel文件即可。
+
+###需要注意的地方
+* 用Qemu来加载光驱的时候，需要修改`-drive file=myOS.img,media=disk`为`-fda myOS.img`，否则，默认会把镜像当作光盘加载，导致读取失败。
 
 
 
