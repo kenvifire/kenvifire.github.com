@@ -1,0 +1,48 @@
+---
+layout: page
+title: OS02-Read Disk
+tagline: OS
+---
+###读取磁盘
+可以通过BISO提供的功能来读取磁盘
+
+BIOS 13号中断：
+
+* 参数
+
+>AL=扇区数<br>
+CH,CL=磁盘号,扇区号<br>
+DH,DL=磁头号,驱动器号<br>
+ES:BX=数据缓冲区地址<br>
+
+* 返回值
+	* 读成功:
+> FLAGCS.CF=0<br>AH=0<br>
+AL=读取的扇区数<br>
+
+	* 读失败:
+>FLAGCS.CF=1<br>AH=出错代码
+
+###代码
+<pre><code>
+	MOV AX,0x0820
+	MOV ES,AX
+	MOV CH,0
+	MOV DH,0
+	MOV CL,2
+
+	MOV AH,0x02
+	MOV AL,1
+	MOV BX,0
+	MOV DL,0
+	INT 13
+	JC error
+fin:
+	HLT
+	JMP	fin
+
+error:
+
+	MOV	SI,msg
+	JMP fin
+</code></pre>

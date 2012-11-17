@@ -31,7 +31,7 @@ tagline: OS
 
 Boot Loader的功能很简单，就是在运行的时候加载内核到内存，然后跳到内核的开始处执行即可。
 <pre><code>
-CYLS	EQU	2	
+	CYLS	EQU	2	
 	ORG	0x7c00
 	JMP	entry
 	DB		0x90
