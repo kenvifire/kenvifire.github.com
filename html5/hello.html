@@ -5,10 +5,11 @@
 <title>CH1EX3: Your First Canvas Application </title>
 <script src="js/modernizr.js"></script>
 <script type="text/javascript">
-window.addEventListener("load", eventWindowLoaded, false);
-var Debugger = function () { };
-Debugger.log = function (message) {
-try {
+	
+	window.addEventListener("load", eventWindowLoaded, false);
+	var Debugger = function () { };
+	Debugger.log = function (message) {
+	try {		
 console.log(message);
 } catch (exception) {
 return;
@@ -41,7 +42,7 @@ var helloWorldImage = new Image();
 helloWorldImage.onload = function () {
 context.drawImage(helloWorldImage, 155, 110);
 }
-helloWorldImage.src = "helloworld.png";
+helloWorldImage.src = "images/helloworld.png";
 //box
 context.strokeStyle = "#000000";
 context.strokeRect(5, 5, 490, 290);

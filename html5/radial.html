@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CH1Ex4: Guesss The Letter Game </title>
+<script src="js/modernizr-1.6.min.js"></script>
+<script type="text/javascript">
+
+window.addEventListener('load', eventWindowLoaded, false);	
+
+var Debugger = function () { };
+Debugger.log = function (message) {
+	try {
+		console.log(message);
+	} catch (exception) {
+		return;
+	}
+}
+
+function eventWindowLoaded() {
+
+	canvasApp();
+}
+
+function canvasSupport () {
+  	return Modernizr.canvas;
+}
+
+
+function eventWindowLoaded() {
+
+	canvasApp();
+}
+
+
+function canvasApp() {
+
+	if (!canvasSupport()) {
+			 return;
+  		}
+		
+	var theCanvas = document.getElementById("canvasOne");
+	var context = theCanvas.getContext("2d"); 
+	
+	drawScreen();
+
+	function drawScreen(){
+		//horizontal gradient values must remain 0
+		var gr = context.createRadialGradient(50,50,25,100,100,100);
+
+		//Add the color stops.
+		gr.addColorStop(0,'rgb(255,0,0)');
+		gr.addColorStop(.5,'rgb(0,255,0)');
+		gr.addColorStop(1,'rgb(255,0,0)');
+
+		//Use the gradient for the fillStyle
+		context.fillStyle = gr;
+		context.fillRect(0, 0, 200, 200);
+	
+	}
+
+	
+		
+}
+
+</script> 
+</head>
+<body>
+<div style="position: absolute; top: 50px; left: 50px;">
+<canvas id="canvasOne" width="500" height="300">
+ Your browser does not support HTML 5 Canvas. 
+</canvas>
+</div>
+</body>
+</html>
+
+
+
+

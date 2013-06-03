@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CH1Ex4: Guesss The Letter Game </title>
+<script src="js/modernizr-1.6.min.js"></script>
+<script type="text/javascript">
+
+window.addEventListener('load', eventWindowLoaded, false);	
+
+var Debugger = function () { };
+Debugger.log = function (message) {
+	try {
+		console.log(message);
+	} catch (exception) {
+		return;
+	}
+}
+
+function eventWindowLoaded() {
+
+	canvasApp();
+}
+
+function canvasSupport () {
+  	return Modernizr.canvas;
+}
+
+
+function eventWindowLoaded() {
+
+	canvasApp();
+}
+
+
+function canvasApp() {
+
+	if (!canvasSupport()) {
+			 return;
+  		}
+		
+	var theCanvas = document.getElementById("canvasOne");
+	var context = theCanvas.getContext("2d"); 
+	
+	drawScreen();
+
+	function drawScreen(){
+		//arc
+		var colors = ['black','red','yellow','blue','green','grey'];
+		var r = 20;
+
+		for(var color in colors){
+			console.log(color);
+			r += 10;
+			context.beginPath();
+			context.strokeStyle = colors[color];
+			context.lineWidth = 5;
+			context.arc(100,100,r,(Math.PI/180)*0,(Math.PI/180)*360,false);
+		//context.arc(100,100,30,(Math.PI/180)*0,(Math.PI/180)*360,false);
+			context.stroke();
+			context.closePath();
+		}
+
+		var angle = 0;
+		for(var color in colors){
+			console.log(color);
+			context.beginPath();
+			context.strokeStyle = colors[color];
+			context.lineWidth = 5;
+			context.arc(200,200,r,(Math.PI/180)*(angle),(Math.PI/180)*(angle+60),false);
+		//context.arc(100,100,30,(Math.PI/180)*0,(Math.PI/180)*360,false);
+			context.stroke();
+			context.closePath();
+			//r += 10;
+			angle += 60;
+		}
+
+
+
+		
+
+		
+	}
+
+	
+		
+}
+
+</script> 
+</head>
+<body>
+<div style="position: absolute; top: 50px; left: 50px;">
+<canvas id="canvasOne" width="500" height="300">
+ Your browser does not support HTML 5 Canvas. 
+</canvas>
+</div>
+</body>
+</html>
+
+
+
+
