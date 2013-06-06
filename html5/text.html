@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CH1Ex4: Guesss The Letter Game </title>
+<script src="js/modernizr-1.6.min.js"></script>
+<script type="text/javascript">
+
+window.addEventListener('load', eventWindowLoaded, false);	
+
+var Debugger = function () { };
+Debugger.log = function (message) {
+	try {
+		console.log(message);
+	} catch (exception) {
+		return;
+	}
+}
+
+function eventWindowLoaded() {
+
+	canvasApp();
+}
+
+function canvasSupport () {
+  	return Modernizr.canvas;
+}
+
+
+function eventWindowLoaded() {
+
+	canvasApp();
+}
+
+
+function canvasApp() {
+
+	if (!canvasSupport()) {
+			 return;
+  		}
+		
+	var theCanvas = document.getElementById("canvasOne");
+	var context = theCanvas.getContext("2d"); 
+
+	var formElement = document.getElementById("textBox");
+	formElement.addEventListener('keyup',textBoxChanged,false);
+
+	var fillOrStroke="fill";
+	formElement = document.getElementById("fillOrStroke");
+	formElement.addEventListener('change',fillOrStrokeChanged,false);
+
+	function fillOrStrokeChanged(e){
+		var target = e.target;
+		fillOrStroke = target.value;
+		drawScreen();
+	}
+
+	
+	function textBoxChanged(e){
+		var target = e.target;
+		message = target.value;
+		
+		drawScreen();
+	}
+
+	var message = "your text";
+	function drawScreen(){
+		resetCanvas();
+
+		var metrics = context.measureText(message);
+		var textWidth = metrics.width;
+		var xPosition = (theCanvas.width/2)-(textWidth/2);
+		var yPosition = (theCanvas.height/2);
+
+		switch(fillOrStroke){
+			case "fill":
+				context.fillStyle="#FF0000";
+				context.fillText(message,xPosition,yPosition);
+				break;
+			case "stroke":
+				context.strokeStyle="#FF0000";
+				context.strokeText(message,xPosition,yPosition);
+				break;
+			case "both":
+				context.fillStyle = "#FF0000";
+				context.fillText(message,xPosition,yPosition);
+
+				context.strokeStyle="#000000";
+				context.strokeText(message,xPosition,yPosition);
+				break;
+		}
+		context.font = "50px serif";
+		context.fillStyle = "#FF0000";
+		context.fillText(message,xPosition,yPosition);
+		
+	}
+	drawScreen();
+
+	function resetCanvas(){
+		var w = theCanvas.width;
+		var h = theCanvas.height;
+		context.clearRect(0,0,w,h);
+
+	}
+
+		
+}
+
+</script> 
+</head>
+<body>
+<div style="position: absolute; top: 50px; left: 50px;">
+<canvas id="canvasOne" width="500" height="300">
+ Your browser does not support HTML 5 Canvas. 
+</canvas>
+<form >
+	Text: <input id ="textBox" />
+	<br>
+	<select id ="fillOrStroke">
+		<option value="fill">fille</option>
+		<option value="stroke">stroke</option>
+		<option value="both">both</option>
+</form>
+
+</div>
+</body>
+</html>
+
+
+
+
