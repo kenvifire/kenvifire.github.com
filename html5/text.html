@@ -49,6 +49,42 @@ function canvasApp() {
 	formElement = document.getElementById("fillOrStroke");
 	formElement.addEventListener('change',fillOrStrokeChanged,false);
 
+	var fontSize = "50";
+	var fontFace = "serif";
+	var fontWeight = "normal";
+	var fontStyle= "normal";
+
+	formElement = document.getElementById("textSize");
+	formElement.addEventListener('change', textSizeChanged, false);
+	formElement = document.getElementById("textFont");
+	formElement.addEventListener('change', textFontChanged, false);
+	formElement = document.getElementById("fontWeight");
+	formElement.addEventListener('change', fontWeightChanged, false);
+	formElement = document.getElementById("fontStyle");
+	formElement.addEventListener('change', fontStyleChanged, false);	
+
+	function textSizeChanged(e) {
+		var target = e.target;
+		fontSize = target.value;
+		drawScreen();
+	}
+
+function textFontChanged(e) {
+var target = e.target;
+fontFace = target.value;
+drawScreen();
+}
+function fontWeightChanged(e) {
+var target = e.target;
+fontWeight = target.value;
+drawScreen();
+}
+function fontStyleChanged(e) {
+var target = e.target;
+fontStyle = target.value;
+drawScreen();
+}
+
 	function fillOrStrokeChanged(e){
 		var target = e.target;
 		fillOrStroke = target.value;
@@ -72,6 +108,7 @@ function canvasApp() {
 		var xPosition = (theCanvas.width/2)-(textWidth/2);
 		var yPosition = (theCanvas.height/2);
 
+		context.font = fontWeight + " " + fontStyle + " " + fontSize + "px " + fontFace;
 		switch(fillOrStroke){
 			case "fill":
 				context.fillStyle="#FF0000";
@@ -89,9 +126,9 @@ function canvasApp() {
 				context.strokeText(message,xPosition,yPosition);
 				break;
 		}
-		context.font = "50px serif";
-		context.fillStyle = "#FF0000";
-		context.fillText(message,xPosition,yPosition);
+		// context.font = "50px serif";
+		// context.fillStyle = "#FF0000";
+		// context.fillText(message,xPosition,yPosition);
 		
 	}
 	drawScreen();
@@ -120,7 +157,29 @@ function canvasApp() {
 		<option value="fill">fille</option>
 		<option value="stroke">stroke</option>
 		<option value="both">both</option>
+	</select>
+	<select id="fontStyle">
+		<option value="normal">normal</option>
+		<option value="italic">italic</option>
+		<option value="oblique">oblique</option>
+	</select>
+	<select id="fontWeight">
+		<option value="normal">normal</option>
+		<option value="bold">bold</option>
+		<option value="bolder">bolder</option>
+		<option value="lighter">lighter</option>
+	</select>	
+	<select id="textFont">
+		<option value="serif">serif</option>
+		<option value="sans-serif">sans-serif</option>
+		<option value="cursive">cursive</option>
+		<option value="fantasy">fantasy</option>
+	</select>
+	<input type="range" id="textSize" min="0" max="200" step="1" value="50">
+
+
 </form>
+
 
 </div>
 </body>
