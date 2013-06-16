@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CH1Ex4: Guesss The Letter Game </title>
+<script src="js/modernizr-1.6.min.js"></script>
+<script type="text/javascript">
+
+window.addEventListener('load', eventWindowLoaded, false);	
+
+var Debugger = function () { };
+Debugger.log = function (message) {
+	try {
+		console.log(message);
+	} catch (exception) {
+		return;
+	}
+}
+
+function eventWindowLoaded() {
+
+	canvasApp();
+}
+
+function canvasSupport () {
+  	return Modernizr.canvas;
+}
+
+
+function eventWindowLoaded() {
+
+	canvasApp();
+}
+
+function eventShipLoaded(){
+	startUp();
+}
+
+function startUP(){
+	gameLoop();
+}
+
+
+
+function canvasApp() {
+
+	if (!canvasSupport()) {
+			 return;
+  		}
+		
+	var theCanvas = document.getElementById("canvasOne");
+	var context = theCanvas.getContext("2d"); 
+
+	var colorStops = new Array(
+		{color:"#FF0000",stopPercent:0},
+		{color:"#FFFF00",stopPercent:0.125},
+		{color:"#00FF00",stopPercent:0.375},
+		{color:"#0000FF",stopPercent:0.625},
+		{color:"#FF00FF",stopPercent:0.875},
+		{color:"#FF0000",stopPercent:1}
+		);
+
+	var gradient = context.createLinearGradient(
+					theCanvas.width/2,
+					0,
+					theCanvas.width/2,
+					theCanvas.height
+		);
+
+		var spaceShip = new Image();
+		var titleSheet = new Image();
+		spaceShip.addEventListener('load',eventSheetLoad,false);
+		spaceShip.src="images/ship1.gif";
+		titleSheet.src="images/ships.png";
+		var counter = 0;
+		
+
+		function eventSheetLoad(){
+			gameLoop();
+		}
+
+	var y= 0;	
+	
+function gameLoop(){
+	window.setInterval(drawScreen,20);
+	drawScreen();
+
+}
+	function drawScreen(){
+		//resetCanvas();
+		//make changes here
+		// context.fillStyle ="#aaaaaa";
+		// context.fillRect(0,0,200,200);
+		// context.fillStyle = "#000000";
+		// context.font="20px sans-serif";
+		// context.textBaseLine = 'top';
+		// context.fillText('Canvas!',0,0);
+		//alert(y);
+		// y++;	
+		// console.log(y);
+		// context.drawImage(spaceShip,0,0+y,64,64);
+		// context.drawImage(spaceShip,50,50+y*2);
+		context.fillStyle = "#aaaaaa";
+		context.fillRect(0,0,500,500);
+		context.drawImage(titleSheet, 32*counter, 0,32,32,50,50,64,64);
+
+		counter++;
+		if(counter>1){
+			counter = 0;
+		}
+
+	}
+	function resetCanvas(){
+		var w = theCanvas.width;
+		var h = theCanvas.height;
+		context.clearRect(0,0,w,h);
+
+	}
+
+	
+
+		
+}
+
+</script> 
+</head>
+<body>
+<div style="position: absolute; top: 50px; left: 50px;">
+<canvas id="canvasOne" width="500" height="300">
+ Your browser does not support HTML 5 Canvas. 
+</canvas>
+
+
+
+</div>
+</body>
+</html>
+
+
+
+

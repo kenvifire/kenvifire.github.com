@@ -69,21 +69,23 @@ function canvasApp() {
 		drawScreen();
 	}
 
-function textFontChanged(e) {
-var target = e.target;
-fontFace = target.value;
-drawScreen();
-}
-function fontWeightChanged(e) {
-var target = e.target;
-fontWeight = target.value;
-drawScreen();
-}
-function fontStyleChanged(e) {
-var target = e.target;
-fontStyle = target.value;
-drawScreen();
-}
+	function textFontChanged(e) {
+		var target = e.target;
+		fontFace = target.value;
+		drawScreen();
+	}
+
+	function fontWeightChanged(e) {
+		var target = e.target;
+		fontWeight = target.value;
+		drawScreen();
+	}
+
+	function fontStyleChanged(e) {
+		var target = e.target;
+		fontStyle = target.value;
+		drawScreen();
+	}
 
 	function fillOrStrokeChanged(e){
 		var target = e.target;
