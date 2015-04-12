@@ -1,6 +1,0 @@
-<div class="grid_10 page">
-  {% capture about_content %}
-    {% include test.md %}
-  {% endcapture %}
-  {{ about_content | unindent | markdownify }}
-</div>
