@@ -109,6 +109,61 @@ VALUE <key> <flags> <bytes> [<cas unique>]\r\n
 
 - <data block>表示当前数据项对应的数据
 
+### 删除数据
+
+`delete`命令让我们可以显示地去删除数据：
+
+{% highlight java %}
+delete <key> [noreply]\r\n
+{% endhighlight %}
+
+- `<key>`是客户端想要删除的数据项的key
+
+- “noreply”是可选的参数，旨在告诉服务器不用发送相应信息。
+
+对于这个命令的相应有：
+
+- “DELETED\r\n”表示删除成功
+- “NOT_FOUND\r\n“表示和这个key对应的数据项不存在
+
+### 增加/减少
+
+`incr`和`decr`命令都是用来立即修改数据的，分表表示增加和减少。对应数据项的值会被按照64位的无符号整数进行处理。如果当前的数据值不能当做数字进行处理的话，服务器会返回错误。
+
+客户端的命令如下：
+
+{% highlight java %}
+
+incr <key> <value> [noreply]\r\n
+decr <key> <value> [noreply]\r\n
+
+{% endhighlight %}
+
+- `<value>`表示想要增加或者减少的值。
+
+服务端的相应有：
+
+- “NOT_FOUND\r\n” 表示更当前key对应的值不存在
+
+- “<value>\r\n” 表示修改后的新值
+
+### Touch命令
+
+`touch`命令主要是用来更新已有数据项的时效时间。
+
+{% highlight java %}
+touch <key> <exptime> [noreply]\r\n
+{% endhighlight %}
+
+- `<key>`表示需要更新的数据项的key
+
+- `<exptime>`表示失效时间
+
+服务端的相应有：
+
+- “TOUCHED\r\n” 表示成功
+- “NOT_FOUND\r\n”表示该key对应的数据项不存在
+
 
 
 
