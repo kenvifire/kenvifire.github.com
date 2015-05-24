@@ -33,10 +33,12 @@ Memchached支持TCP和UDP协议进行通信，但是应用层协议都是一致�
 
 首先，客户端发送一个如下格式的命令：
 
+{% highlight java %}
 <command name> <key> <flags> <exptime> <bytes> [noreply]\r\n
 cas <key> <flags> <exptime> <bytes> <cas unique> [noreply]\n\n
+{% endhighlight %}
 
-- <command> 主要包含：set，replace，append和prepend
+- `<command>` 主要包含：set，replace，append和prepend
 
 	- set 表示保存数据
 	- add表示保存数据，但是只是在服务端没有对应key的情况下
@@ -46,23 +48,25 @@ cas <key> <flags> <exptime> <bytes> <cas unique> [noreply]\n\n
 
  prepend和append命令不会有flags和exptime字段
 
-- <key> 表示客户端想要保存数据所对应的key
+- `<key>` 表示客户端想要保存数据所对应的key
 
-- <flags> 是一个任意的16位整数，memcached服务器会把它和数据保存在一起，读取的时候也会返回给客户端，这个值对于服务端而言是透明的。
+- `<flags>` 是一个任意的16位整数，memcached服务器会把它和数据保存在一起，读取的时候也会返回给客户端，这个值对于服务端而言是透明的。
 
-- <exptime> 表示失效时间，0表示永不失效（但是可能会因为server需要给其他数据腾出空间而被删除）
+- `<exptime>` 表示失效时间，0表示永不失效（但是可能会因为server需要给其他数据腾出空间而被删除）
 
-- <bytes> 表示数据的长度
+- `<bytes>` 表示数据的长度
 
-- <cas unique> 表示客户端用来进行cas更新时从服务端取到的关联到当前取到值一个64位的值。
+- `<cas unique>` 表示客户端用来进行cas更新时从服务端取到的关联到当前取到值一个64位的值。
 
 - “noreplay”是个可选的参数，它表示不需要server返回信息。
 
 在这行结束后，客户端就可以把数据发送给服务端：
 
+{% highlight java %}
 <data block>\r\n
+{% endhighlight %}
 
-- <data block>是一个由任意<byte>长度的8位数据块。
+- `<data block>`是一个由任意`<byte>`长度的8位数据块。
 
 发送完命令后，客服端就等待服务端的返回结果，结果可能是：
 
@@ -75,10 +79,12 @@ cas <key> <flags> <exptime> <bytes> <cas unique> [noreply]\n\n
 
 获取数据的命令“get”和“gets”命令的形式如下：
 
+{% highlight java %}
 get <key>*\r\n
 gets <key>*\r\n
+{% endhighlight %}
 
-- <key>* 表示通过空格区分的多个key
+- `<key>*` 表示通过空格区分的多个key
 
 发送完这条命令后，客户端会等待服务器返回0条或者多条数据项。每条数据项都是一个文本行，后面是数据块。在最后面是字符串：
 
@@ -88,8 +94,10 @@ gets <key>*\r\n
 
 每个服务端返回的数据项都如下所示：
 
+{% highlight java %}
 VALUE <key> <flags> <bytes> [<cas unique>]\r\n
 <data block>\r\n
+{% endhighlight %}
 
 - <key> 对应的是数据项的key
 
