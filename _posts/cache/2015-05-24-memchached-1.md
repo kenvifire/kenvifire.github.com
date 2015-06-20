@@ -70,7 +70,7 @@ cas <key> <flags> <exptime> <bytes> <cas unique> [noreply]\n\n
 
 发送完命令后，客服端就等待服务端的返回结果，结果可能是：
 
-- “STOREN\r\n”，表示成功
+- “STORED\r\n”，表示成功
 - “NOT_STORED\r\n”表示数据没有保存，不过不是因为错误。一般而言，是因为“add”和“replace”命令的条件没达到
 - “EXISTS\r\n”表示通过cas要保存的数据项在上次获取之后被修改过
 - “NOT_FOUND\r\n“表示通过cas命令要保存的数据项不存在
