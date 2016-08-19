@@ -110,7 +110,11 @@ int a = dest.getInt("a");
 
 总体来说，对于java这种静态语言，ObjectParser提供了一种类似于静态语言获取字段信息的方式，在很多业务场景下还是非常适用的。
 
+
+[V.0.0.1](https://github.com/kenvifire/ObjectParser/releases)
+
 [GitHub链接](https://github.com/kenvifire/ObjectParser)
+
 
 
 
