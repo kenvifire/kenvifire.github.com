@@ -36,6 +36,89 @@ ObjectParser是用来解析Java/Json对象的，主要有两种:
 #### JsonObjectParser
 
 JsonObjectParser就是针对json对象的parser，上面已经简单讲解过。
+这里提供一个示例:
+
+<pre><code>
+  /*** test data **/
+        /*
+       {
+            "data" : {
+            	"o":{},
+            	"int":1,
+            	"true":true,
+            	"false":false,
+            	"long":100,
+            	"double":100.2,
+            	"string":"string",
+            	"date":1463046784000,
+            	"detail":{
+            		"a": 11,
+            		"b": "dB"
+            	},
+            	"strList" :[
+            		"a","b"
+            	],
+            	"intList" : [
+            		1,2,3
+            	],
+            	"longList" :[
+            		2,3,4
+            	],
+            	"doubleList" :[
+            	   1.1,2.2,3.3
+            	],
+            	"objList" : [
+            	  {"a":1,"b":"bb","c":[1,2,3]},
+            	  {"a":2,"b":"bb2"}
+
+            	]
+            }
+        }
+        *
+        * */
+        /***** test data end***/
+        JsonObjectParser parser = new JsonObjectParser("{\n" +
+                "            \"data\" : {\n" +
+                "            \t\"o\":{},\n" +
+                "            \t\"int\":1,\n" +
+                "            \t\"true\":true,\n" +
+                "            \t\"false\":false,\n" +
+                "            \t\"long\":100,\n" +
+                "            \t\"double\":100.2,\n" +
+                "            \t\"string\":\"string\",\n" +
+                "            \t\"date\":1463046784000,\n" +
+                "            \t\"detail\":{\n" +
+                "            \t\t\"a\": 11,\n" +
+                "            \t\t\"b\": \"dB\"\n" +
+                "            \t},\n" +
+                "            \t\"strList\" :[\n" +
+                "            \t\t\"a\",\"b\"\n" +
+                "            \t],\n" +
+                "            \t\"intList\" : [\n" +
+                "            \t\t1,2,3\n" +
+                "            \t],\n" +
+                "            \t\"longList\" :[\n" +
+                "            \t\t2,3,4\n" +
+                "            \t],\n" +
+                "            \t\"doubleList\" :[\n" +
+                "            \t   1.1,2.2,3.3\n" +
+                "            \t],\n" +
+                "            \t\"objList\" : [\n" +
+                "            \t  {\"a\":1,\"b\":\"bb\",\"c\":[1,2]},\n" +
+                "            \t  {\"a\":2,\"b\":\"bb2\"}\n" +
+                "\n" +
+                "            \t]\n" +
+                "            }\n" +
+                "        }");
+       
+        Assert.assertEquals(Integer.valueOf(1), parser.getInt("data.intList[0]"));
+        Assert.assertEquals(Integer.valueOf(2), parser.getInt("data.intList[1]"));
+        Assert.assertEquals(Long.valueOf(3), parser.getLong("data.longList[1]"));
+        Assert.assertEquals(Integer.valueOf(2),     parser.getInt("data.objList[1].a"));
+        Assert.assertEquals(Integer.valueOf(2), parser.getInt("data.objList[0].c[1]"));
+        </code></pre>
+
+
 
 #### ObjectParser
 
